@@ -1,0 +1,16 @@
+{
+  "name": "mupwww",
+  "version": "1.0.0",
+  "description": "Projekt pro predmet tvorba www",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mimcz/mupwww.git"
+  },
+  "author": "Vojtech Zalesky",
+  "license": "MIT",
+  "homepage": "https://github.com/mimcz/mupwww#readme"
+}
