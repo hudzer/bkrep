@@ -86,10 +86,11 @@ input:focus {
 }
 /* logo */
 .logo {
-
+  max-width: 200px;
 }
 .logo-img {
-
+  max-width: 200px;
+  display: block;
 }
 /* nav */
 .nav {
