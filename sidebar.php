@@ -1,15 +1,21 @@
-<!-- sidebar -->
-<aside class="sidebar" role="complementary">
+<?php
+/**
+ * The sidebar containing the main widget area
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
+ *
+ * @package Write_Blog
+ */
 
-	<?php get_template_part('searchform'); ?>
+if ( ! is_active_sidebar( 'sidebar-1' ) ) {
+	return;
+}
+?>
 
-	<div class="sidebar-widget">
-		<?php if(!function_exists('dynamic_sidebar') || !dynamic_sidebar('widget-area-1')) ?>
+<aside id="secondary" class="widget-area">
+    <div class="theiaStickySidebar">
+		<div class="sidebar-bg">
+			<?php dynamic_sidebar( 'sidebar-1' ); ?>
+		</div>
 	</div>
-
-	<div class="sidebar-widget">
-		<?php if(!function_exists('dynamic_sidebar') || !dynamic_sidebar('widget-area-2')) ?>
-	</div>
-
-</aside>
-<!-- /sidebar -->
+</aside><!-- #secondary -->

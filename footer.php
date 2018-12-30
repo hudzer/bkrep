@@ -1,30 +1,73 @@
-			<!-- footer -->
-			<footer class="footer" role="contentinfo">
+<?php
+/**
+ * The template for displaying the footer
+ *
+ * Contains the closing of the #content div and all content after.
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
+ *
+ * @package Write_Blog
+ */
+?>
+<?php
+if( is_front_page() ) {
+    /**
+     * Hook - write_blog_home_section.
+     */
+    do_action('write_blog_home_footer_section');
+}
+if( !is_front_page() ) {
+    ?>
+    </div><!-- #content -->
+    <?php
+}else{
+}
+?>
+<footer id="colophon" class="site-footer">
+    <?php if (is_active_sidebar('footer-col-one') || is_active_sidebar('footer-col-two') || is_active_sidebar('footer-col-three')): ?>
+        <div class="footer-widget-area">
+            <div class="container-fluid">
+                <div class="row">
+                    <?php if (is_active_sidebar('footer-col-one')) : ?>
+                        <div class="col-md-4">
+                            <?php dynamic_sidebar('footer-col-one'); ?>
+                        </div>
+                    <?php endif; ?>
+                    <?php if (is_active_sidebar('footer-col-two')) : ?>
+                        <div class="col-md-4">
+                            <?php dynamic_sidebar('footer-col-two'); ?>
+                        </div>
+                    <?php endif; ?>
+                    <?php if (is_active_sidebar('footer-col-three')) : ?>
+                        <div class="col-md-4">
+                            <?php dynamic_sidebar('footer-col-three'); ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
 
-				<!-- copyright -->
-				<p class="copyright">
-					&copy; <?php echo date('Y'); ?> Copyright <?php bloginfo('name'); ?>. <?php _e('Powered by', 'html5blank'); ?>
-					<a href="//wordpress.org" title="WordPress">WordPress</a> &amp; <a href="//html5blank.com" title="HTML5 Blank">HTML5 Blank</a>.
-				</p>
-				<!-- /copyright -->
+    <?php
+    $copyright_text = write_blog_get_option('copyright_text', true);
+    if ($copyright_text):
+    ?>
+        <div class="site-copyright">
+            <div class="container-fluid">
+                <span><?php echo wp_kses_post($copyright_text);?></span>
+                <?php
+                $enable_footer_credit = write_blog_get_option('enable_footer_credit', true);
+                if ($enable_footer_credit) {
+                    printf(esc_html__('Theme: %1$s by %2$s', 'write-blog'), 'Write Blog', '<a href="http://thememattic.com/" target = "_blank" rel="designer">Thememattic</a>');
+                }
+                ?>
+            </div>
+        </div>
+    <?php endif;?>
+</footer>
+</div>
+<a id="scroll-up" class="secondary-background"><i class="ion-ios-arrow-up"></i></a>
+<?php wp_footer(); ?>
 
-			</footer>
-			<!-- /footer -->
-
-		</div>
-		<!-- /wrapper -->
-
-		<?php wp_footer(); ?>
-
-		<!-- analytics -->
-		<script>
-		(function(f,i,r,e,s,h,l){i['GoogleAnalyticsObject']=s;f[s]=f[s]||function(){
-		(f[s].q=f[s].q||[]).push(arguments)},f[s].l=1*new Date();h=i.createElement(r),
-		l=i.getElementsByTagName(r)[0];h.async=1;h.src=e;l.parentNode.insertBefore(h,l)
-		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-		ga('create', 'UA-XXXXXXXX-XX', 'yourdomain.com');
-		ga('send', 'pageview');
-		</script>
-
-	</body>
+</body>
 </html>

@@ -1,24 +1,18 @@
-<?php get_header(); ?>
+<?php
+/**
+ * The template for displaying 404 pages (not found)
+ *
+ * @link https://codex.wordpress.org/Creating_an_Error_404_Page
+ *
+ * @package Write_Blog
+ */
 
-	<main role="main">
-		<!-- section -->
-		<section>
-
-			<!-- article -->
-			<article id="post-404">
-
-				<h1><?php _e( 'Page not found', 'html5blank' ); ?></h1>
-				<h2>
-					<a href="<?php echo home_url(); ?>"><?php _e( 'Return home?', 'html5blank' ); ?></a>
-				</h2>
-
-			</article>
-			<!-- /article -->
-
-		</section>
-		<!-- /section -->
-	</main>
-
-<?php get_sidebar(); ?>
-
-<?php get_footer(); ?>
+get_header(); ?>
+<section class="error-404">
+	<div class="page-content">
+		<h2><?php esc_html_e( '404 not found. Maybe try a search?', 'write-blog' ); ?></h2>
+		<?php get_search_form(); ?>
+	</div>
+</section>
+<?php
+get_footer();

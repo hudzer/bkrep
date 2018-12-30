@@ -1,45 +1,54 @@
-<?php get_header(); ?>
+<?php
+/**
+ * The template for displaying all pages
+ *
+ * This is the template that displays all pages by default.
+ * Please note that this is the WordPress construct of pages
+ * and that other 'pages' on your WordPress site may use a
+ * different template.
+ *
+ * @link https://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package Write_Blog
+ */
 
-	<main role="main">
-		<!-- section -->
-		<section>
+get_header();
 
-			<h1><?php the_title(); ?></h1>
+global $post;
+$wrapper_start = $wrapper_end = '';
+if (is_front_page()):
+    if( $post->post_content != '') {
+        $wrapper_start = '<section class="section-block section-static-enable"><div class="container">';
+        $wrapper_end   = '</div></section>';
+    }
+endif;
 
-		<?php if (have_posts()): while (have_posts()) : the_post(); ?>
+?>
+<?php echo $wrapper_start; ?>
+<div id="primary" class="content-area">
+    <main id="main" class="site-main">
 
-			<!-- article -->
-			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+        <?php
+        while (have_posts()) : the_post();
 
-				<?php the_content(); ?>
+            get_template_part('template-parts/content', 'page');
 
-				<?php comments_template( '', true ); // Remove if you don't want comments ?>
+            // If comments are open or we have at least one comment, load up the comment template.
+            if (comments_open() || get_comments_number()) :
+                comments_template();
+            endif;
 
-				<br class="clear">
+        endwhile; // End of the loop.
+        ?>
 
-				<?php edit_post_link(); ?>
+    </main><!-- #main -->
+</div><!-- #primary -->
 
-			</article>
-			<!-- /article -->
+<?php
+$page_layout = write_blog_get_page_layout();
+if ('no-sidebar' != $page_layout) {
+    get_sidebar();
+}
 
-		<?php endwhile; ?>
-
-		<?php else: ?>
-
-			<!-- article -->
-			<article>
-
-				<h2><?php _e( 'Sorry, nothing to display.', 'html5blank' ); ?></h2>
-
-			</article>
-			<!-- /article -->
-
-		<?php endif; ?>
-
-		</section>
-		<!-- /section -->
-	</main>
-
-<?php get_sidebar(); ?>
-
-<?php get_footer(); ?>
+echo $wrapper_end;
+get_footer();
